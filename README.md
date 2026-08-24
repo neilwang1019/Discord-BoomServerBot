@@ -1,5 +1,4 @@
-# Discord-BoomServerBot
-
+# Discord 炸群機器人
 ## 📌 專案簡介 (Project Overview)
 本專案為 Discord Bot 的安全性概念驗證 (PoC) 工具，旨在展示當機器人獲得高權限（如 `Administrator`）時，Discord API 可能產生的破壞性機制。透過模擬自動化炸群與資源清空行為，協助伺服器管理員與資安人員評估潛在安全風險、驗證權限控管漏洞以及測試 API Rate Limit 防禦力。
 
@@ -10,7 +9,7 @@
 
 ## ⚠️ 免責聲明與使用條款 (Disclaimer)
 * **教育與研究用途**：本程式僅供資安技術研究、學術討論與授權之安全性測試。
-* **法律責任**：使用者需完全承擔因不當使用所衍生之法律責任、帳號懲處（如 Discord Ban）與伺服器損失，開發團隊概不負責。
+* **法律責任**：使用者需完全承擔因不當使用所衍生之法律責任、帳號懲處（如 Discord Ban）與伺服器損失，開發團隊概不負責。使用者需自行承擔一切法律、帳號與平台風險。
 * **合規性要求**：請嚴格遵守 [Discord Terms of Service](https://discord.com/terms) 與 [Developer Terms](https://discord.com/developers/docs/legal)，絕對禁止用於未經授權的目標伺服器。
 
 ## ⚙️ 技術架構與環境需求 (Technical Requirements)
@@ -40,13 +39,6 @@ pip install discord.py
 ```bash
 python full_nuke.py
 ```
-
-## 🛡️ 安全防護與建議 (Mitigation & Defense)
-為防止類似的惡意攻擊，伺服器管理員應採取以下安全防衛措施：
-* **最小權限原則 (Principle of Least Privilege)**：切勿輕易給予第三方 Bot `Administrator` (系統管理員) 或 `Manage Channels` 權限。
-* **身分組階層控管 (Role Hierarchy)**：將核心管理員的身分組拉至 Bot 最高身分組之上，防止 Bot 遭劫持後剔除管理員。
-* **關閉 Webhook 權限**：收回 `@everyone` 與非必要 Bot 的 `Manage Webhooks` 權限，避免繞過慢速模式。
-* **審核日誌監視 (Audit Logs)**：搭配 Anti-Nuke 監控型 Bot，即時偵測異常高頻率的 API 操作。
 
 ## 👨‍💻 專案資訊 (Project Info)
 * **開發與發布**：N.L. / YX International Strategy
