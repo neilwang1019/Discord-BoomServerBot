@@ -16,7 +16,7 @@ MESSAGES_PATH = os.path.join(BASE_DIR, "messages.txt")
 
 def init_txt_files():
     if not os.path.exists(CHANNELS_PATH):
-        defaults = ["nuked-by-null", "server-destroyed", "get-fucked", "eat-my-dick", "吃我雞巴", "eat-my-dick"]
+        defaults = ["吃我雞巴", "幹垃圾群組"]
         with open(CHANNELS_PATH, "w", encoding="utf-8") as f:
             f.write("\n".join(defaults))
         logging.info(f"已成功於同目錄建立: {CHANNELS_PATH}")
@@ -26,7 +26,7 @@ def init_txt_files():
             "# ⚠️ YOUR SERVER HAS BEEN FULLY NUKED ⚠️\n"
             "> **ALL CHANNELS, ROLES, AND MEMBERS HAVE BEEN WIPED.**\n\n"
             "@everyone @here\n"
-            "||垃圾群組滾去吃屎||"
+            "||吃我雞巴，垃圾群組滾去吃屎||"
         )
         with open(MESSAGES_PATH, "w", encoding="utf-8") as f:
             f.write(default_msg)
