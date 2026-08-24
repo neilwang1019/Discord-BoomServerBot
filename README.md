@@ -1,5 +1,4 @@
 # Discord-BoomServerBot
-# Discord 伺服器安全性測試與壓力模擬機器人 (Discord Security Audit & Stress Test Bot)
 
 ## 📌 專案簡介 (Project Overview)
 本專案為 Discord Bot 的安全性概念驗證 (PoC) 工具，旨在展示當機器人獲得高權限（如 `Administrator`）時，Discord API 可能產生的破壞性機制。透過模擬自動化炸群與資源清空行為，協助伺服器管理員與資安人員評估潛在安全風險、驗證權限控管漏洞以及測試 API Rate Limit 防禦力。
